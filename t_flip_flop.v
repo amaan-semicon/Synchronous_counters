@@ -29,15 +29,16 @@ input T,
     
     reg Q_reg;
     wire Q_next;
-
+    // present_state_logic
     always @(posedge clk or negedge rst) begin
         if (~rst)
             Q_reg <= 1'b0;
         else
             #6 Q_reg <= Q_next;
     end
-
+    // next_state_logic
     assign Q_next = T ? ~Q_reg : Q_reg;
+    // output_logic
     assign Q = Q_reg;
     
 endmodule
